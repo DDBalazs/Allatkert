@@ -23,9 +23,33 @@ class AllatkertController extends Controller
     }
     public function Emlosok(){
         return view('/emlosok',[
-            'result'    =>  Allatok::select('nev','latin_nev','elofordulas')
+            'emlosok'    =>  Allatok::select('allat_id','nev','latin_nev','elofordulas')
                                     ->where('kategoria','e')
+                                    ->OrderBy('nev')
                                     ->get()
+        ]);
+    }
+    public function Madarak(){
+        return view('/madarak',[
+            'madarak'    =>  Allatok::select('allat_id','nev','latin_nev','elofordulas')
+                                    ->where('kategoria','m')
+                                    ->OrderBy('nev')
+                                    ->get()
+        ]);
+    }
+    public function Hullok(){
+        return view('/hullok',[
+            'hullok'    =>  Allatok::select('allat_id','nev','latin_nev','elofordulas')
+                                    ->where('kategoria','h')
+                                    ->OrderBy('nev')
+                                    ->get()
+        ]);
+    }
+    public function Hirlevel(Request $req){
+        $req->validate([
+
+        ],[
+
         ]);
     }
 }
