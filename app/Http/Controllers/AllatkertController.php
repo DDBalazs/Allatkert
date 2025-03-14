@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\Jegyek;
 use App\Models\Allatok;
+use App\Models\Hirlevel;
 
 class AllatkertController extends Controller
 {
@@ -47,9 +48,19 @@ class AllatkertController extends Controller
     }
     public function Hirlevel(Request $req){
         $req->validate([
-
+            'nev'   =>  'required',
+            'email' =>  'required|email'
         ],[
-
+            'nev.required'      =>  'Nevet kötelező megadni!',
+            'email.required'    =>  'E-mail címet kötelező megadni!',
+            'email.email'       =>  'Nem megfelelő e-mail cím formátumot adott meg!'
         ]);
+        $data = new hirlevel;
+        $data->nev      = $req->nev;
+        $data->email    = $req->email;
+        if($data->Save()){
+            return view('success');
+        }
+
     }
 }

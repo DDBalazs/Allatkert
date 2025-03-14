@@ -13,3 +13,5 @@ Route::get('/hullok', [AllatkertController::class, 'Hullok']);
 
 Route::view('/hirlevel', 'Hirlevel');
 Route::post('/hirlevel', [AllatkertController::class, 'Hirlevel']);
+
+Route::view('/success', 'Success');
